@@ -1,0 +1,51 @@
+import requests
+import datetime as dt
+import pandas as pd
+import glob, os, json
+
+# fetch
+yearn = requests.get("https://api.llama.fi/protocol/yearn-finance")
+beefy = requests.get("https://api.llama.fi/protocol/beefy")
+badger = requests.get("https://api.llama.fi/protocol/badger-dao")
+idle = requests.get("https://api.llama.fi/protocol/idle-finance")
+auto = requests.get("https://api.llama.fi/protocol/autofarm")
+flam = requests.get("https://api.llama.fi/protocol/flamincome")
+yyak = requests.get("https://api.llama.fi/protocol/yield-yak")
+spool = requests.get("https://api.llama.fi/protocol/spool-protocol")
+rari = requests.get("https://api.llama.fi/protocol/rari-capital")
+harvest = requests.get("https://api.llama.fi/protocol/harvest-finance")
+vesper = requests.get("https://api.llama.fi/protocol/vesper")
+acs = requests.get("https://api.llama.fi/protocol/acryptos")
+reaper = requests.get("https://api.llama.fi/protocol/reaper-farm")
+pickle = requests.get("https://api.llama.fi/protocol/pickle")
+solidex = requests.get("https://api.llama.fi/protocol/solidex")
+water = requests.get("https://api.llama.fi/protocol/waterfall-defi")
+magik = requests.get("https://api.llama.fi/protocol/magik-farm")
+onx = requests.get("https://api.llama.fi/protocol/onx-finance")
+robo = requests.get("https://api.llama.fi/protocol/robo-vault")
+
+file_list = [
+    yearn.json()["chainTvls"],
+    beefy.json()["chainTvls"],
+    badger.json()["chainTvls"],
+    idle.json()["chainTvls"],
+    auto.json()["chainTvls"],
+    flam.json()["chainTvls"],
+    yyak.json()["chainTvls"],
+    spool.json()["chainTvls"],
+    rari.json()["chainTvls"],
+    harvest.json()["chainTvls"],
+    vesper.json()["chainTvls"],
+    acs.json()["chainTvls"],
+    reaper.json()["chainTvls"],
+    pickle.json()["chainTvls"],
+    solidex.json()["chainTvls"],
+    water.json()["chainTvls"],
+    magik.json()["chainTvls"],
+    onx.json()["chainTvls"],
+    robo.json()["chainTvls"],
+]
+
+# turn into dataframe
+df = pd.json_normalize(file_list)
+print(df)

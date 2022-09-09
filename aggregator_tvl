@@ -45,7 +45,3 @@ file_list = [
     onx.json()["chainTvls"],
     robo.json()["chainTvls"],
 ]
-
-# turn into dataframe
-df = pd.json_normalize(file_list)
-print(df)
